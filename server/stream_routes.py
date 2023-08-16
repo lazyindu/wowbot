@@ -12,12 +12,31 @@ from aiohttp.http_exceptions import BadStatusLine
 from lazybot import multi_clients, work_loads, StreamBot
 from server.exceptions import FIleNotFound, InvalidHash
 from zzint import StartTime, __version__
-from util.time_format import get_readable_time
-from util.custom_dl import ByteStreamer
+from ..util.time_format import get_readable_time
+from ..util.custom_dl import ByteStreamer
 from util.render_template import render_page
 from info import *
 
 
+routes = web.RouteTableDef()
+
+@routes.get("/", allow_head=True)
+async def root_route_handler(_):
+    return web.json_response(
+        {
+            "server_status": "running",
+            "uptime": get_readable_time(time.time() - StartTime),
+            "telegram_bot": "@" + StreamBot.username,
+            "connected_bots": len(multi_clients),
+            "loads": dict(
+                ("bot" + str(c + 1), l)
+                for c, (_, l) in enumerate(
+                    sorted(work_loads.items(), key=lambda x: x[1], reverse=True)
+                )
+            ),
+            "version": __version__,
+        }
+    )
 
 
 @routes.get(r"/watch/{path:\S+}", allow_head=True)
