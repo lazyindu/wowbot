@@ -19,3 +19,6 @@ openai
 python-dotenv<=0.20.0
 apscheduler
 pyshorteners
+psutil
+pyromod
+colorama
