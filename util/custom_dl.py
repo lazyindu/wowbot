@@ -5,7 +5,7 @@ from info import *
 from typing import Dict, Union
 from lazybot import work_loads
 from pyrogram import Client, utils, raw
-from .file_properties import get_file_ids
+from file_properties import get_file_ids
 from pyrogram.session import Session, Auth
 from pyrogram.errors import AuthBytesInvalid
 from server.exceptions import FIleNotFound
