@@ -22,11 +22,6 @@ from aiohttp import web
 from plugins import web_server
 
 PORT = "8080"
-ppath = "plugins/*.py"
-files = glob.glob(ppath)
-StreamBot.start()
-loop = asyncio.get_event_loop()
-
 
 class Bot(Client):
 
@@ -104,4 +99,21 @@ class Bot(Client):
 
 
 app = Bot()
-app.run()
+app = Bot()
+async def start_services():
+    await app.start()
+
+async def stop_services():
+    await app.stop()
+
+if __name__ == '__main__':
+    ppath = "Adarsh/bot/plugins/*.py"
+    files = glob.glob(ppath)
+    StreamBot.start()
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(start_services())
+    try:
+        loop.run_forever()
+    except KeyboardInterrupt:
+        loop.run_until_complete(stop_services())
+        loop.close()
