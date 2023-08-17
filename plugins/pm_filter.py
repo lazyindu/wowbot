@@ -153,20 +153,24 @@ async def doc(bot, update):
 # Generating Online File Streaming Downloading Link
 # Generating Online File Streaming Downloading Link
 @Client.on_callback_query(filters.regex("generate_stream_link"))
-async def generate_stream_link_handler(c: Client, query: CallbackQuery):
-    log_msg = await c.copy_message(chat_id=LOG_CHANNEL, from_chat_id=query.message.chat.id, message_id=query.message.message_id)
-    stream_link = f"{URL}watch/{str(log_msg.message_id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
-    online_link = f"{URL}{str(log_msg.message_id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
-    
-    msg_text = """<i><u>𝗬𝗼𝘂𝗿 𝗟𝗶𝗻𝗸 𝗚𝗲𝗻𝗲𝗿𝗮𝘁𝗲𝗱 !</u></i>\n\n<b>📂 Fɪʟᴇ ɴᴀᴍᴇ :</b> <i>{}</i>\n\n<b>📦 Fɪʟᴇ ꜱɪᴢᴇ :</b> <i>{}</i>\n\n<b>📥 Dᴏᴡɴʟᴏᴀᴅ :</b> <i>{}</i>\n\n<b> 🖥WATCH  :</b> <i>{}</i>\n\n<b>🚸 Nᴏᴛᴇ : LINK WON'T EXPIRE TILL I DELETE</b>"""
-    
-    await query.message.reply_text(
-        text=msg_text.format(get_name(log_msg), humanbytes(get_media_file_size(log_msg)), online_link, stream_link),
-        quote=True,
-        disable_web_page_preview=True,
-        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("STREAM 🖥", url=stream_link),  # Stream Link
-                                            InlineKeyboardButton('DOWNLOAD 📥', url=online_link)]])  # Download Link
-    )
+async def cb_handler(client: Client, query: CallbackQuery):
+    data = query.data
+
+    if data.startswith("generate_stream_link"):
+        message_id = query.message.message_id
+        stream_link = f"{URL}watch/{str(message_id)}/{quote_plus(get_name(query.message))}?hash={get_hash(query.message)}"
+        online_link = f"{URL}{str(message_id)}/{quote_plus(get_name(query.message))}?hash={get_hash(query.message)}"
+        
+        msg_text = """<i><u>𝗬𝗼𝘂𝗿 𝗟𝗶𝗻𝗸 𝗚𝗲𝗻𝗲𝗿𝗮𝘁𝗲𝗱 !</u></i>\n\n<b>📂 Fɪʟᴇ ɴᴀᴍᴇ :</b> <i>{}</i>\n\n<b>📦 Fɪʟᴇ ꜱɪᴢᴇ :</b> <i>{}</i>\n\n<b>📥 Dᴏᴡɴʟᴏᴀᴅ :</b> <i>{}</i>\n\n<b> 🖥WATCH  :</b> <i>{}</i>\n\n<b>🚸 Nᴏᴛᴇ : LINK WON'T EXPIRE TILL I DELETE</b>"""
+        
+        await query.message.reply_text(
+            text=msg_text.format(get_name(query.message), humanbytes(get_media_file_size(query.message)), online_link, stream_link),
+            quote=True,
+            disable_web_page_preview=True,
+            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("STREAM 🖥", url=stream_link),  # Stream Link
+                                                InlineKeyboardButton('DOWNLOAD 📥', url=online_link)]])  # Download Link
+        )
+
 
 
 # Born to make history @LazyDeveloper !
