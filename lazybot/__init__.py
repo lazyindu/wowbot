@@ -2,10 +2,8 @@
 from pyrogram import Client
 from info import *
 
-
-
 StreamBot = Client(
-    name='LazyStreamer',
+    name=SESSION,
     api_id=API_ID,
     api_hash=API_HASH,
     bot_token=BOT_TOKEN,
