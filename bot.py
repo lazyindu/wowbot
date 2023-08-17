@@ -7,6 +7,8 @@ logging.getLogger().setLevel(logging.INFO)
 logging.getLogger("pyrogram").setLevel(logging.ERROR)
 logging.getLogger("imdbpy").setLevel(logging.ERROR)
 
+import glob
+from lazybot import StreamBot
 from pyrogram import Client, __version__
 from pyrogram.raw.all import layer
 from database.ia_filterdb import Media
@@ -19,6 +21,11 @@ from aiohttp import web
 from plugins import web_server
 
 PORT = "8080"
+ppath = "plugins/*.py"
+files = glob.glob(ppath)
+StreamBot.start()
+loop = asyncio.get_event_loop()
+
 
 class Bot(Client):
 
