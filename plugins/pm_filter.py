@@ -775,7 +775,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         _, file_id = data.split(":")
         try:
             log_msg = client.send_cached_media(
-                chat_id=LOG_CHANNEL
+                chat_id=LOG_CHANNEL,
                 file_id=file_id
             )
             stream_link = f"{URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
