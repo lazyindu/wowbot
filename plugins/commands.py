@@ -222,16 +222,14 @@ async def start(client, message):
     if not files_:
         pre, file_id = ((base64.urlsafe_b64decode(data + "=" * (-len(data) % 4))).decode("ascii")).split("_", 1)
         try:
-            # getting message id
-            message_id = message.message_id
             # Create the inline keyboard button with callback_data
-            button = InlineKeyboardButton('▶ Gen Stream / Download Link', callback_data=f'generate_stream_link:{message_id}')
+            button = InlineKeyboardButton('▶ Gen Stream / Download Link', callback_data=f'generate_stream_link')
             # Create the inline keyboard markup with the button
             keyboard = InlineKeyboardMarkup([[button]])
             msg = await client.send_cached_media(
                 chat_id=message.from_user.id,
                 file_id=file_id,
-                reply_markup=keyboard,  # Use the created keyboard
+                reply_markup=keyboard,
                 protect_content=True if pre == 'filep' else False,
                 )
             filetype = msg.media
