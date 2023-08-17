@@ -1,6 +1,6 @@
 
 from aiohttp import web
-from server.stream_routes import routes
+from .stream_routes import routes
 
 
 async def web_server():
