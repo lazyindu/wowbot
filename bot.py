@@ -7,6 +7,7 @@ logging.getLogger().setLevel(logging.INFO)
 logging.getLogger("pyrogram").setLevel(logging.ERROR)
 logging.getLogger("imdbpy").setLevel(logging.ERROR)
 
+import asyncio
 import glob
 from lazybot import StreamBot
 from pyrogram import Client, __version__
