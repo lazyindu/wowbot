@@ -1,21 +1,22 @@
 # Taken from megadlbot_oss <https://github.com/eyaadh/megadlbot_oss/blob/master/mega/webserver/routes.py>
 # Thanks to Eyaadh <https://github.com/eyaadh>
 
+
 import re
 import time
 import math
 import logging
 import secrets
 import mimetypes
-from info import *
 from aiohttp import web
 from aiohttp.http_exceptions import BadStatusLine
 from lazybot import multi_clients, work_loads, StreamBot
 from server.exceptions import FIleNotFound, InvalidHash
+from zzint import StartTime, __version__
+from ..util.time_format import get_readable_time
 from ..util.custom_dl import ByteStreamer
 from util.render_template import render_page
-from ..util.time_format import get_readable_time
-from zzint import StartTime, __version__
+from info import *
 
 
 routes = web.RouteTableDef()
