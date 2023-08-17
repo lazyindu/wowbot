@@ -259,11 +259,8 @@ async def start(client, message):
             f_caption=f_caption
     if f_caption is None:
         f_caption = f"{files.file_name}"
-   
-    # getting message id
-    message_id = message.message_id
     # Create the inline keyboard button with callback_data
-    button = InlineKeyboardButton('▶ Gen Stream / Download Link', callback_data=f'generate_stream_link:{message_id}')
+    button = InlineKeyboardButton('▶ Gen Stream / Download Link', callback_data=f'generate_stream_link')
     # Create the inline keyboard markup with the button
     keyboard = InlineKeyboardMarkup([[button]])
     await client.send_cached_media(
