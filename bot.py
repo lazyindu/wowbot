@@ -133,7 +133,7 @@ async def start_services():
         with open(name) as a:
             patt = Path(a.name)
             plugin_name = patt.stem.replace(".py", "")
-            plugins_dir = Path(f"Adarsh/bot/plugins/{plugin_name}.py")
+            plugins_dir = Path(f"plugins/{plugin_name}.py")
             import_path = ".plugins.{}".format(plugin_name)
             spec = importlib.util.spec_from_file_location(import_path, plugins_dir)
             load = importlib.util.module_from_spec(spec)
