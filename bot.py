@@ -31,14 +31,18 @@ from util.keepalive import ping_server
 from lazybot.clients import initialize_clients
 
 PORT = "8080"
-StreamBot.start()
 loop = asyncio.get_event_loop()
 
 class Bot(Client):
     def __init__(self):
         super().__init__(
             name=SESSION,
+            api_id=API_ID,
+            api_hash=API_HASH,
+            bot_token=BOT_TOKEN,
+            workers=50,
             plugins={"root": "plugins"},
+            sleep_threshold=5,
         )
     async def start(self):
         print('\n')
