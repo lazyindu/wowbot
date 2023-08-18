@@ -130,7 +130,7 @@ class Bot(Client):
 def main():
     loop = asyncio.get_event_loop()
     if not loop.is_running():
-        loop.run_until_complete(Bot().start())
+        asyncio.run(Bot().start())
 
 if __name__ == '__main__':
     try:
