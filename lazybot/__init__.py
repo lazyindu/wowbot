@@ -7,6 +7,7 @@ StreamBot = Client(
     api_id=API_ID,
     api_hash=API_HASH,
     bot_token=BOT_TOKEN,
+    plugins={"root": "plugins"},
     sleep_threshold=SLEEP_THRESHOLD,
     workers=WORKERS
 )
