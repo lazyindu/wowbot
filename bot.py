@@ -45,9 +45,10 @@ class Bot(Client):
         )
 
     async def start(self):
+        await super().start()  # Start the client
         print('\n')
         print('------------------- Initalizing Telegram Bot -------------------')
-        bot_info = await StreamBot.get_me()
+        bot_info = await self.get_me()  # Use self.get_me() instead of StreamBot.get_me()
         StreamBot.username = bot_info.username
         print("------------------------------ DONE ------------------------------")
         print()
@@ -66,7 +67,6 @@ class Bot(Client):
         b_users, b_chats = await db.get_banned()
         temp.BANNED_USERS = b_users
         temp.BANNED_CHATS = b_chats
-        await super().start()
         await Media.ensure_indexes()
         me = await self.get_me()
         temp.ME = me.id
@@ -127,4 +127,9 @@ class Bot(Client):
                 current += 1
 
 app = Bot()
-app.run()
+
+if __name__ == '__main__':
+    try:
+        app.run()
+    except KeyboardInterrupt:
+        logging.info('----------------------- Service Stopped -----------------------')
