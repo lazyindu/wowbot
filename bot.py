@@ -31,7 +31,7 @@ from util.keepalive import ping_server
 from lazybot.clients import initialize_clients
 
 PORT = "8080"
-
+StreamBot.start()
 class Bot(Client):
     def __init__(self):
         super().__init__(
@@ -45,7 +45,7 @@ class Bot(Client):
         )
 
     async def start(self):
-        await super().start()  # Start the client
+        # await super().start()  # Start the client
         print('\n')
         print('------------------- Initalizing Telegram Bot -------------------')
         bot_info = await self.get_me()  # Use self.get_me() instead of StreamBot.get_me()
