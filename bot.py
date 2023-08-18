@@ -17,7 +17,6 @@ import glob
 import importlib
 from lazybot import StreamBot
 from pathlib import Path
-from util.keepalive import ping_server
 from lazybot.clients import initialize_clients
 
 from pyrogram import Client, __version__ , idle
@@ -60,7 +59,9 @@ class Bot(Client):
         temp.U_NAME = me.username
         temp.B_NAME = me.first_name
         self.username = '@' + me.username
+        
         await initialize_clients()
+        
         for name in files:
             with open(name) as a:
                 patt = Path(a.name)
@@ -72,14 +73,13 @@ class Bot(Client):
                 spec.loader.exec_module(load)
                 sys.modules["plugins." + plugin_name] = load
                 print("Imported => " + plugin_name)
-        if ON_HEROKU:
-            asyncio.create_task(ping_server())
-            app = web.AppRunner(await web_server())
-            await app.setup()
-            bind_address = "0.0.0.0"
-            await web.TCPSite(app, bind_address, PORT).start()
-            logging.info(f"{me.first_name} with for Pyrogram v{__version__} (Layer {layer}) started on {me.username}.")
-            logging.info(LOG_STR)
+
+        app = web.AppRunner(await web_server())
+        await app.setup()
+        bind_address = "0.0.0.0"
+        await web.TCPSite(app, bind_address, PORT).start()
+        logging.info(f"{me.first_name} with for Pyrogram v{__version__} (Layer {layer}) started on {me.username}.")
+        logging.info(LOG_STR)
 
     async def stop(self, *args):
         await super().stop()
@@ -123,7 +123,6 @@ class Bot(Client):
             for message in messages:
                 yield message
                 current += 1
-
 
 app = Bot()
 app.run()
