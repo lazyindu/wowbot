@@ -31,7 +31,6 @@ from util.keepalive import ping_server
 from lazybot.clients import initialize_clients
 
 PORT = "8080"
-loop = asyncio.get_event_loop()
 
 class Bot(Client):
     def __init__(self):
@@ -86,7 +85,8 @@ class Bot(Client):
     async def stop(self, *args):
         await super().stop()
         logging.info("Bot stopped. Bye.")
-    
+
+
     async def iter_messages(
         self,
         chat_id: Union[int, str],
