@@ -35,7 +35,11 @@ StreamBot.start()
 loop = asyncio.get_event_loop()
 
 class Bot(Client):
-
+    def __init__(self):
+        super().__init__(
+            name=SESSION,
+            plugins={"root": "plugins"},
+        )
     async def start(self):
         print('\n')
         print('------------------- Initalizing Telegram Bot -------------------')
