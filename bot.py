@@ -22,11 +22,9 @@ logging.getLogger("aiohttp").setLevel(logging.ERROR)
 logging.getLogger("pyrogram").setLevel(logging.ERROR)
 logging.getLogger("aiohttp.web").setLevel(logging.ERROR)
 
-ppath = "plugins/*.py"
-files = glob.glob(ppath)
+
 StreamBot.start()
 loop = asyncio.get_event_loop()
-
 
 async def start_services():
     print('\n')
@@ -42,17 +40,7 @@ async def start_services():
     print("------------------------------ DONE ------------------------------")
     print('\n')
     print('--------------------------- Importing ---------------------------')
-    for name in files:
-        with open(name) as a:
-            patt = Path(a.name)
-            plugin_name = patt.stem.replace(".py", "")
-            plugins_dir = Path(f"plugins/{plugin_name}.py")
-            import_path = "plugins.{}".format(plugin_name)
-            spec = importlib.util.spec_from_file_location(import_path, plugins_dir)
-            load = importlib.util.module_from_spec(spec)
-            spec.loader.exec_module(load)
-            sys.modules["plugins." + plugin_name] = load
-            print("Imported => " + plugin_name)
+
     if ON_HEROKU:
         print("------------------ Starting Keep Alive Service ------------------")
         print()
