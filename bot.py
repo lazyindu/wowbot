@@ -31,7 +31,7 @@ from util.keepalive import ping_server
 from lazybot.clients import initialize_clients
 
 PORT = "8080"
-StreamBot.start()
+
 class Bot(Client):
     def __init__(self):
         super().__init__(
@@ -45,10 +45,19 @@ class Bot(Client):
         )
 
     async def start(self):
-        # await super().start()  # Start the client
+        b_users, b_chats = await db.get_banned()
+        temp.BANNED_USERS = b_users
+        temp.BANNED_CHATS = b_chats
+        await super().start()
+        await Media.ensure_indexes()
+        me = await self.get_me()
+        temp.ME = me.id
+        temp.U_NAME = me.username
+        temp.B_NAME = me.first_name
+        self.username = '@' + me.username
         print('\n')
         print('------------------- Initalizing Telegram Bot -------------------')
-        bot_info = await self.get_me()  # Use self.get_me() instead of StreamBot.get_me()
+        bot_info = await StreamBot.get_me()
         StreamBot.username = bot_info.username
         print("------------------------------ DONE ------------------------------")
         print()
@@ -64,15 +73,6 @@ class Bot(Client):
             print()
             asyncio.create_task(ping_server())
         print('-------------------- Initalizing Web Server -------------------------')
-        b_users, b_chats = await db.get_banned()
-        temp.BANNED_USERS = b_users
-        temp.BANNED_CHATS = b_chats
-        await Media.ensure_indexes()
-        me = await self.get_me()
-        temp.ME = me.id
-        temp.U_NAME = me.username
-        temp.B_NAME = me.first_name
-        self.username = '@' + me.username
         app = web.AppRunner(await web_server())
         await app.setup()
         bind_address = "0.0.0.0" if ON_HEROKU else BIND_ADRESS
@@ -128,8 +128,13 @@ class Bot(Client):
 
 app = Bot()
 
+def main():
+    loop = asyncio.get_event_loop()
+    if not loop.is_running():
+        loop.run_until_complete(Bot().start())
+
 if __name__ == '__main__':
     try:
-        app.run()
+        main()
     except KeyboardInterrupt:
         logging.info('----------------------- Service Stopped -----------------------')
