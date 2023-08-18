@@ -46,15 +46,6 @@ class Bot(Client):
 
     async def start(self):
         await super().start()
-        b_users, b_chats = await db.get_banned()
-        temp.BANNED_USERS = b_users
-        temp.BANNED_CHATS = b_chats
-        await Media.ensure_indexes()
-        me = await self.get_me()
-        temp.ME = me.id
-        temp.U_NAME = me.username
-        temp.B_NAME = me.first_name
-        self.username = '@' + me.username
         print('\n')
         print('------------------- Initalizing Telegram Bot -------------------')
         bot_info = await self.get_me()
@@ -73,6 +64,15 @@ class Bot(Client):
             print()
             asyncio.create_task(ping_server())
         print('-------------------- Initalizing Web Server -------------------------')
+        b_users, b_chats = await db.get_banned()
+        temp.BANNED_USERS = b_users
+        temp.BANNED_CHATS = b_chats
+        await Media.ensure_indexes()
+        me = await self.get_me()
+        temp.ME = me.id
+        temp.U_NAME = me.username
+        temp.B_NAME = me.first_name
+        self.username = '@' + me.username
         app = web.AppRunner(await web_server())
         await app.setup()
         bind_address = "0.0.0.0" if ON_HEROKU else BIND_ADRESS
@@ -126,7 +126,6 @@ class Bot(Client):
                 yield message
                 current += 1
 
-app = Bot()
 
 def main():
     loop = asyncio.get_event_loop()
