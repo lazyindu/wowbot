@@ -57,7 +57,7 @@ class Bot(Client):
         self.username = '@' + me.username
         print('\n')
         print('------------------- Initalizing Telegram Bot -------------------')
-        bot_info = await StreamBot.get_me()
+        bot_info = await self.get_me()
         StreamBot.username = bot_info.username
         print("------------------------------ DONE ------------------------------")
         print()
