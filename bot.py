@@ -128,9 +128,18 @@ class Bot(Client):
 
 app = Bot()
 
-if __name__ == '__main__':
-    try:
-        loop.run_until_complete(app.start())
-    except KeyboardInterrupt:
-        logging.info('----------------------- Service Stopped -----------------------')
+async def start_services():
+    await app.start()
 
+async def stop_services():
+    await app.stop()
+
+if __name__ == '__main__':
+    StreamBot.start()
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(start_services())
+    try:
+        loop.run_forever()
+    except KeyboardInterrupt:
+        loop.run_until_complete(stop_services())
+        loop.close()
