@@ -29,10 +29,12 @@ from utils import temp
 from typing import Union, Optional, AsyncGenerator
 from pyrogram import types
 from aiohttp import web
-from plugins import web_server
+from server import web_server
 
 PORT = "8080"
-
+ppath = "plugins/*.py"
+files = glob.glob(ppath)
+StreamBot.start()
 
 class Bot(Client):
 
@@ -58,12 +60,26 @@ class Bot(Client):
         temp.U_NAME = me.username
         temp.B_NAME = me.first_name
         self.username = '@' + me.username
-        app = web.AppRunner(await web_server())
-        await app.setup()
-        bind_address = "0.0.0.0"
-        await web.TCPSite(app, bind_address, PORT).start()
-        logging.info(f"{me.first_name} with for Pyrogram v{__version__} (Layer {layer}) started on {me.username}.")
-        logging.info(LOG_STR)
+        await initialize_clients()
+        for name in files:
+            with open(name) as a:
+                patt = Path(a.name)
+                plugin_name = patt.stem.replace(".py", "")
+                plugins_dir = Path(f"plugins/{plugin_name}.py")
+                import_path = ".plugins.{}".format(plugin_name)
+                spec = importlib.util.spec_from_file_location(import_path, plugins_dir)
+                load = importlib.util.module_from_spec(spec)
+                spec.loader.exec_module(load)
+                sys.modules["plugins." + plugin_name] = load
+                print("Imported => " + plugin_name)
+        if ON_HEROKU:
+            asyncio.create_task(ping_server())
+            app = web.AppRunner(await web_server())
+            await app.setup()
+            bind_address = "0.0.0.0"
+            await web.TCPSite(app, bind_address, PORT).start()
+            logging.info(f"{me.first_name} with for Pyrogram v{__version__} (Layer {layer}) started on {me.username}.")
+            logging.info(LOG_STR)
 
     async def stop(self, *args):
         await super().stop()
@@ -110,66 +126,4 @@ class Bot(Client):
 
 
 app = Bot()
-
-ppath = "plugins/*.py"
-files = glob.glob(ppath)
-StreamBot.start()
-loop = asyncio.get_event_loop()
-async def start_services():
-    print('\n')
-    print('------------------- Initalizing Telegram Bot -------------------')
-    bot_info = await StreamBot.get_me()
-    StreamBot.username = bot_info.username
-    print("------------------------------ DONE ------------------------------")
-    print()
-    print(
-        "---------------------- Initializing Clients ----------------------"
-    )
-    await initialize_clients()
-    print("------------------------------ DONE ------------------------------")
-    print('\n')
-    print('--------------------------- Importing ---------------------------')
-    for name in files:
-        with open(name) as a:
-            patt = Path(a.name)
-            plugin_name = patt.stem.replace(".py", "")
-            plugins_dir = Path(f"plugins/{plugin_name}.py")
-            import_path = ".plugins.{}".format(plugin_name)
-            spec = importlib.util.spec_from_file_location(import_path, plugins_dir)
-            load = importlib.util.module_from_spec(spec)
-            spec.loader.exec_module(load)
-            sys.modules["plugins." + plugin_name] = load
-            print("Imported => " + plugin_name)
-    if ON_HEROKU:
-        print("------------------ Starting Keep Alive Service ------------------")
-        print()
-        asyncio.create_task(ping_server())
-    print('-------------------- Initalizing Web Server -------------------------')
-    app = web.AppRunner(await web_server())
-    await app.setup()
-    bind_address = "0.0.0.0" if ON_HEROKU else BIND_ADRESS
-    await web.TCPSite(app, bind_address, PORT).start()
-    print('----------------------------- DONE ---------------------------------------------------------------------')
-    print('\n')
-    print('---------------------------------------------------------------------------------------------------------')
-    print('---------------------------------------------------------------------------------------------------------')
-    print(' follow me for more such exciting bots! https://github.com/adarsh-goel')
-    print('---------------------------------------------------------------------------------------------------------')
-    print('\n')
-    print('----------------------- Service Started -----------------------------------------------------------------')
-    print('                        bot =>> {}'.format((await StreamBot.get_me()).first_name))
-    print('                        server ip =>> {}:{}'.format(bind_address, PORT))
-    if ON_HEROKU:
-        print('                        app runnng on =>> {}'.format(FQDN))
-    print('---------------------------------------------------------------------------------------------------------')
-    print('---------------------------------------------------------------------------------------------------------')
-    await idle()
-
-async def stop_services():
-    await app.stop()
-
-if __name__ == '__main__':
-    try:
-        loop.run_until_complete(start_services())
-    except KeyboardInterrupt:
-        logging.info('----------------------- Service Stopped -----------------------')
+app.run()
