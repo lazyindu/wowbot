@@ -79,7 +79,6 @@ async def iter_messages(
             current += 1
 
 async def start_services():
-    await StreamBot.start()
     print('\n')
     print('------------------- Initalizing Telegram Bot -------------------')
     bot_info = await StreamBot.get_me()
