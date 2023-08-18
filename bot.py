@@ -44,6 +44,7 @@ class Bot(Client):
             plugins={"root": "plugins"},
             sleep_threshold=5,
         )
+
     async def start(self):
         print('\n')
         print('------------------- Initalizing Telegram Bot -------------------')
@@ -125,21 +126,5 @@ class Bot(Client):
                 yield message
                 current += 1
 
-
 app = Bot()
-
-async def start_services():
-    await app.start()
-
-async def stop_services():
-    await app.stop()
-
-if __name__ == '__main__':
-    StreamBot.start()
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(start_services())
-    try:
-        loop.run_forever()
-    except KeyboardInterrupt:
-        loop.run_until_complete(stop_services())
-        loop.close()
+app.run()
