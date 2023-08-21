@@ -408,10 +408,10 @@ fetch('https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=' + c
         }
 	    
 	function mx_player() {
-    	const finalLinkUrl = finalUrl;
-    	const mxUrl = `mxplayer://open?url={finalLinkUrl}`;
-   	 window.location.href = mxUrl;
-	}
+            const finalLinkUrl = finalUrl;
+            const mxUrl = `intent:${finalLinkUrl}#Intent;package=com.mxtech.videoplayer.ad;end`;
+            window.location.href = mxUrl;
+        }
         
 	function playit_player() {
     	const finalLinkUrl = finalUrl;
