@@ -1478,8 +1478,22 @@ async def auto_filter(client, msg, spoll=False):
         btn.append(
             [InlineKeyboardButton(text="🗓 1/1", callback_data="pages")]
         )
+
+    #waiting user to complete imdb process @LazyDeveloperr
+    user = message.from_user
+    full_name = user.first_name + " " + user.last_name if user.last_name else user.first_name
+    waiting_message = await message.reply_text(f"Setting up your request {full_name}...")
+    await asyncio.sleep(1)
+    await waiting_message.delete()
+    serve_message = await message.reply_text(f"🥰")
+    fetching_message = await message.reply_text(f"Fetching details from server {full_name}...")
+
     imdb = await get_poster(search, file=(files[0]).file_name) if settings["imdb"] else None
     TEMPLATE = settings['template']
+    await serve_message.delete()
+    await fetching_message.delete()
+    # waiting overs here @LazyDeveloperr
+
     if imdb:
         cap = TEMPLATE.format(
             query=search,
@@ -1516,13 +1530,7 @@ async def auto_filter(client, msg, spoll=False):
         cap = f"⚡Baby, Here is what i found for your query {search}"
     if imdb and imdb.get('poster'):
         try:
-            user = message.from_user
-            full_name = user.first_name + " " + user.last_name if user.last_name else user.first_name
-            if imdb.get('poster')  is None :
-                ox = await message.relpy_text(f'please wait {full_name}...')
-            else:
-                await ox.delete()
-                z = await message.reply_photo(photo=imdb.get('poster'), caption=cap[:1024],
+            z = await message.reply_photo(photo=imdb.get('poster'), caption=cap[:1024],
                                         reply_markup=InlineKeyboardMarkup(btn))
             if SELF_DELETE:
                 await asyncio.sleep(SELF_DELETE_SECONDS)
@@ -1530,11 +1538,8 @@ async def auto_filter(client, msg, spoll=False):
         except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
             pic = imdb.get('poster')
             poster = pic.replace('.jpg', "._V1_UX360.jpg")
-            if pic  is None :
-                oxo = await message.relpy_text(f'please wait {full_name}...')
-            else: 
-                await oxo.delete()
-                m = await message.reply_photo(photo=poster, caption=cap[:1024], reply_markup=InlineKeyboardMarkup(btn))
+
+            m = await message.reply_photo(photo=poster, caption=cap[:1024], reply_markup=InlineKeyboardMarkup(btn))
             if SELF_DELETE:
                 await asyncio.sleep(SELF_DELETE_SECONDS)
                 await m.delete()
