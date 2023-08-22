@@ -766,7 +766,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
             log_msg = await client.send_cached_media(
                 chat_id=LOG_CHANNEL,
                 file_id=file_id,
-                caption={quote_plus(get_name(log_msg))}
             )
             fileName = {quote_plus(get_name(log_msg))}
             lazy_stream = f"{URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
