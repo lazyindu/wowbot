@@ -24,9 +24,13 @@ permission of LazyDeveloperr
 """
     # Credit @LazyDeveloper.
     # Please Don't remove credit.
-        # Born to make history @LazyDeveloper !
+    # Born to make history @LazyDeveloper !
 
     # Thank you LazyDeveloper for helping us in this Journey
+    # 🥰  Thank you for giving me credit @LazyDeveloperr  🥰
+
+    # for any error please contact me -> telegram@LazyDeveloperr or insta @LazyDeveloperr 
+
 import asyncio
 from asyncio import sleep
 from pyrogram import Client, filters
@@ -34,12 +38,6 @@ from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup
 from pyrogram.errors import FloodWait,UserNotParticipant
 import humanize
 from info import *
-# from utils import humanbytes
-# import random
-# from pyshorteners import Shortener
-# from lazybot import StreamBot
-
-
 
 
 @Client.on_message( filters.private & (filters.document | filters.audio | filters.video))
