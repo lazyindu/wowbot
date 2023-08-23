@@ -188,7 +188,7 @@ async def set_skip_number(bot, message):
 
 
 
-async def index_files_to_db(lst_msg_id, chat, msg, bot):
+async def index_files_to_db(lst_msg_id, chat, msg, bot, LazyPrincessBot):
     total_files = 0
     duplicate = 0
     errors = 0
