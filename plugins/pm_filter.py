@@ -236,7 +236,7 @@ async def next_page(bot, query):
                                 caption=file.file_name,
                             )
                             
-                            lazy_stream = await f"{URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
+                            lazy_stream = f"{URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
                             # Debug print statements
                             await log_msg.reply_text(
                                     text=f"•• ʟɪɴᴋ ɢᴇɴᴇʀᴀᴛᴇᴅ ꜰᴏʀ ɪᴅ #{query.from_user.id} \n\n•• ᖴᎥᒪᗴ Nᗩᗰᗴ : {file.file_name}",
@@ -330,7 +330,7 @@ async def next_page(bot, query):
                             caption=file.file_name,
                         )
                         
-                        lazy_stream = await f"{URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
+                        lazy_stream = f"{URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
                         # Debug print statements
                         await log_msg.reply_text(
                                 text=f"•• ʟɪɴᴋ ɢᴇɴᴇʀᴀᴛᴇᴅ ꜰᴏʀ ɪᴅ #{query.from_user.id} \n\n•• ᖴᎥᒪᗴ Nᗩᗰᗴ : {file.file_name}",
@@ -1412,7 +1412,7 @@ async def auto_filter(client, msg, spoll=False):
                                 caption=file.file_name,
                             )
                             
-                            lazy_stream = await f"{URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
+                            lazy_stream = f"{URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
                             # Debug print statements
                             await log_msg.reply_text(
                                     text=f"•• ʟɪɴᴋ ɢᴇɴᴇʀᴀᴛᴇᴅ ꜰᴏʀ ɪᴅ #{message.from_user.id} \n\n•• ᖴᎥᒪᗴ Nᗩᗰᗴ : {file.file_name}",
@@ -1506,7 +1506,7 @@ async def auto_filter(client, msg, spoll=False):
                             caption=file.file_name,
                         )
                         
-                        lazy_stream = await f"{URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
+                        lazy_stream = f"{URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
                         # Debug print statements
                         await log_msg.reply_text(
                                 text=f"•• ʟɪɴᴋ ɢᴇɴᴇʀᴀᴛᴇᴅ ꜰᴏʀ ɪᴅ #{message.from_user.id} \n\n•• ᖴᎥᒪᗴ Nᗩᗰᗴ : {file.file_name}",
