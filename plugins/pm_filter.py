@@ -231,7 +231,7 @@ async def next_page(bot, query):
                     for file in files:
                         try:
                             log_msg = await bot.send_cached_media(
-                                chat_id=REQ_CHANNEL,
+                                chat_id=LOG_CHANNEL,
                                 file_id=file.file_id,
                                 caption=file.file_name,
                             )
@@ -325,7 +325,7 @@ async def next_page(bot, query):
                 for file in files:
                     try:
                         log_msg = await bot.send_cached_media(
-                            chat_id=REQ_CHANNEL,
+                            chat_id=LOG_CHANNEL,
                             file_id=file.file_id,
                             caption=file.file_name,
                         )
@@ -1407,7 +1407,7 @@ async def auto_filter(client, msg, spoll=False):
                     for file in files:
                         try:
                             log_msg = await client.send_cached_media(
-                                chat_id=REQ_CHANNEL,
+                                chat_id=LOG_CHANNEL,
                                 file_id=file.file_id,
                                 caption=file.file_name,
                             )
@@ -1501,7 +1501,7 @@ async def auto_filter(client, msg, spoll=False):
                 for file in files:
                     try:
                         log_msg = await client.send_cached_media(
-                            chat_id=REQ_CHANNEL,
+                            chat_id=LOG_CHANNEL,
                             file_id=file.file_id,
                             caption=file.file_name,
                         )
