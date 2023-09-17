@@ -302,13 +302,17 @@ async def next_page(bot, query):
                     for file in files
                 ]
             else:
-                btn = [
-                    [
-                        InlineKeyboardButton(text=f"{file.file_name}",url=await get_shortlink(f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}")),
-                        InlineKeyboardButton(text=f"[{get_size(file.file_size)}]", url=await get_shortlink(f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}")),
-                    ]
-                    for file in files
-                ]
+                btn = []
+                for file in files:
+                    lazy_stream = f"{URL}watch/{str(file.file_id)}/{quote_plus(file.file_name)}?hash={get_hash(file)}"
+                    # lazy_download = f"{URL}{str(file.file_id)}/{quote_plus(get_name(file))}?hash={get_hash(file)}"
+
+                    inline_button = InlineKeyboardButton(
+                        text=f"[{get_size(file.file_size)}] {file.file_name}", 
+                        url=await get_shortlink(lazy_stream)
+                    )
+
+                    btn.append(inline_button)
         else:
             if query.form_user.id in ADMINS:
                 btn = [
@@ -1361,15 +1365,17 @@ async def auto_filter(client, msg, spoll=False):
                     for file in files
                     ]
                 else:
-                    btn = [
-                        [
-                            InlineKeyboardButton(
-                                text=f"[{get_size(file.file_size)}] {file.file_name}", 
-                                url=await get_shortlink(f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}")
-                            ),
-                        ]
-                        for file in files
-                    ]
+                    btn = []
+                    for file in files:
+                        lazy_stream = f"{URL}watch/{str(file.file_id)}/{quote_plus(file.file_name)}?hash={get_hash(file)}"
+                        # lazy_download = f"{URL}{str(file.file_id)}/{quote_plus(get_name(file))}?hash={get_hash(file)}"
+
+                        inline_button = InlineKeyboardButton(
+                            text=f"[{get_size(file.file_size)}] {file.file_name}", 
+                            url=await get_shortlink(lazy_stream)
+                        )
+
+                        btn.append(inline_button)
             else:
                 if message.from_user.id in ADMINS:
                     btn = [
@@ -1434,13 +1440,17 @@ async def auto_filter(client, msg, spoll=False):
                     for file in files
                 ]
             else:
-                btn = [
-                    [
-                        InlineKeyboardButton(text=f"{file.file_name}", url=await get_shortlink(f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}")),
-                        InlineKeyboardButton(text=f"[{get_size(file.file_size)}]", url=await get_shortlink(f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}")),
-                    ]
-                    for file in files
-                ]
+                btn = []
+                for file in files:
+                    lazy_stream = f"{URL}watch/{str(file.file_id)}/{quote_plus(file.file_name)}?hash={get_hash(file)}"
+                    # lazy_download = f"{URL}{str(file.file_id)}/{quote_plus(get_name(file))}?hash={get_hash(file)}"
+
+                    inline_button = InlineKeyboardButton(
+                        text=f"[{get_size(file.file_size)}] {file.file_name}", 
+                        url=await get_shortlink(lazy_stream)
+                    )
+
+                    btn.append(inline_button)
         else:
             if message.form_user.id in ADMINS:
                 btn = [
