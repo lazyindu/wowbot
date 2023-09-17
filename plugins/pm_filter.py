@@ -230,32 +230,10 @@ async def next_page(bot, query):
                     btn = []
                     for file in files:
                         try:
-                            files_ = await get_file_details(file.file_id)
-                            if not files_:
-                                return await query.answer('No such file exist.')
-                            files = files_[0]
-                            title = files.file_name
-                            size = get_size(files.file_size)
-                            f_caption = files.caption
-                            file_id = files.id
-                            print(file_id)
-                            settings = await get_settings(query.message.chat.id)
-
-                            if CUSTOM_FILE_CAPTION:
-                                try:
-                                    f_caption = CUSTOM_FILE_CAPTION.format(file_name='' if title is None else title,
-                                                                        file_size='' if size is None else size,
-                                                                        file_caption='' if f_caption is None else f_caption)
-                                except Exception as e:
-                                    logger.exception(e)
-                                f_caption = f_caption
-                            if f_caption is None:
-                                f_caption = f"{files.file_name}"
-                            
                             lazy_files = await bot.send_cached_media(
                                 chat_id=REQ_CHANNEL,
-                                file_id=file_id,
-                                caption=f_caption,
+                                file_id=file.file_id,
+                                caption=file.file_name,
                             )
                             lazy_stream = f"{URL}watch/{str(lazy_files.id)}/{quote_plus(get_name(lazy_files))}?hash={get_hash(lazy_files)}"
                             # Debug print statements
@@ -340,31 +318,10 @@ async def next_page(bot, query):
                 btn = []
                 for file in files:
                     try:
-                        files_ = await get_file_details(file.file_id)
-                        if not files_:
-                            return await query.answer('No such file exist.')
-                        files = files_[0]
-                        title = files.file_name
-                        size = get_size(files.file_size)
-                        f_caption = files.caption
-                        file_id = files.id
-                        print(file_id)
-                        settings = await get_settings(query.message.chat.id)
-                        if CUSTOM_FILE_CAPTION:
-                            try:
-                                f_caption = CUSTOM_FILE_CAPTION.format(file_name='' if title is None else title,
-                                                                    file_size='' if size is None else size,
-                                                                    file_caption='' if f_caption is None else f_caption)
-                            except Exception as e:
-                                logger.exception(e)
-                            f_caption = f_caption
-                        if f_caption is None:
-                            f_caption = f"{files.file_name}"
-                        
                         lazy_files = await bot.send_cached_media(
                             chat_id=REQ_CHANNEL,
-                            file_id=file_id,
-                            caption=f_caption,
+                            file_id=file.file_id,
+                            caption=file.file_name,
                         )
                         lazy_stream = f"{URL}watch/{str(lazy_files.id)}/{quote_plus(get_name(lazy_files))}?hash={get_hash(lazy_files)}"
                         # Debug print statements
@@ -1434,31 +1391,10 @@ async def auto_filter(client, msg, spoll=False):
                     btn = []
                     for file in files:
                         try:
-                            files_ = await get_file_details(file.file_id)
-                            if not files_:
-                                return await message.answer('No such file exist.')
-                            files = files_[0]
-                            title = files.file_name
-                            size = get_size(files.file_size)
-                            f_caption = files.caption
-                            file_id = files.id
-                            print(file_id)
-
-                            if CUSTOM_FILE_CAPTION:
-                                try:
-                                    f_caption = CUSTOM_FILE_CAPTION.format(file_name='' if title is None else title,
-                                                                        file_size='' if size is None else size,
-                                                                        file_caption='' if f_caption is None else f_caption)
-                                except Exception as e:
-                                    logger.exception(e)
-                                f_caption = f_caption
-                            if f_caption is None:
-                                f_caption = f"{files.file_name}"
-                            
                             lazy_files = await client.send_cached_media(
                                 chat_id=REQ_CHANNEL,
-                                file_id=file_id,
-                                caption=f_caption,
+                                file_id=file.file_id,
+                                caption=file.file_name,
                             )
                             lazy_stream = f"{URL}watch/{str(lazy_files.id)}/{quote_plus(get_name(lazy_files))}?hash={get_hash(lazy_files)}"
                             # Debug print statements
@@ -1543,30 +1479,10 @@ async def auto_filter(client, msg, spoll=False):
                 btn = []
                 for file in files:
                     try:
-                        files_ = await get_file_details(file.file_id)
-                        if not files_:
-                            return await message.answer('No such file exist.')
-                        files = files_[0]
-                        title = files.file_name
-                        size = get_size(files.file_size)
-                        f_caption = files.caption
-                        file_id = files.id
-                        print(file_id)
-                        if CUSTOM_FILE_CAPTION:
-                            try:
-                                f_caption = CUSTOM_FILE_CAPTION.format(file_name='' if title is None else title,
-                                                                    file_size='' if size is None else size,
-                                                                    file_caption='' if f_caption is None else f_caption)
-                            except Exception as e:
-                                logger.exception(e)
-                            f_caption = f_caption
-                        if f_caption is None:
-                            f_caption = f"{files.file_name}"
-                        
                         lazy_files = await client.send_cached_media(
                             chat_id=REQ_CHANNEL,
-                            file_id=file_id,
-                            caption=f_caption,
+                            file_id=file.file_id,
+                            caption=file.file_name,
                         )
                         lazy_stream = f"{URL}watch/{str(lazy_files.id)}/{quote_plus(get_name(lazy_files))}?hash={get_hash(lazy_files)}"
                         # Debug print statements
