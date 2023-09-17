@@ -230,23 +230,29 @@ async def next_page(bot, query):
                     btn = []
                     for file in files:
                         try:
-                            lazy_files = await bot.send_cached_media(
+                            log_msg = await bot.send_cached_media(
                                 chat_id=REQ_CHANNEL,
                                 file_id=file.file_id,
                                 caption=file.file_name,
                             )
-                            lazy_stream = f"{URL}watch/{str(lazy_files.id)}/{quote_plus(get_name(lazy_files))}?hash={get_hash(lazy_files)}"
+                            
+                            lazy_stream = await f"{URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
                             # Debug print statements
+                            await log_msg.reply_text(
+                                    text=f"•• ʟɪɴᴋ ɢᴇɴᴇʀᴀᴛᴇᴅ ꜰᴏʀ ɪᴅ #{query.from_user.id} \n\n•• ᖴᎥᒪᗴ Nᗩᗰᗴ : {file.file_name}",
+                                    quote=True,
+                                    disable_web_page_preview=True,
+                                    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Short Link", url= await get_shortlink(lazy_stream)),  # we download Link
+                                                                        InlineKeyboardButton('▶Stream online', url=lazy_stream)]])  # web stream Link
+                                    )
+    
                             print("lazy_stream:", lazy_stream)
-
                             inline_button = [ InlineKeyboardButton(
                                 text=f"[{get_size(file.file_size)}] {file.file_name}", 
                                 url=await get_shortlink(lazy_stream)
                             ) ]
-
                             # Debug print statements
                             print("Short Link:", await get_shortlink(lazy_stream))
-
                             btn.append(inline_button)
                         except Exception as e:
                             print(e)
@@ -318,13 +324,22 @@ async def next_page(bot, query):
                 btn = []
                 for file in files:
                     try:
-                        lazy_files = await bot.send_cached_media(
+                        log_msg = await bot.send_cached_media(
                             chat_id=REQ_CHANNEL,
                             file_id=file.file_id,
                             caption=file.file_name,
                         )
-                        lazy_stream = f"{URL}watch/{str(lazy_files.id)}/{quote_plus(get_name(lazy_files))}?hash={get_hash(lazy_files)}"
+                        
+                        lazy_stream = await f"{URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
                         # Debug print statements
+                        await log_msg.reply_text(
+                                text=f"•• ʟɪɴᴋ ɢᴇɴᴇʀᴀᴛᴇᴅ ꜰᴏʀ ɪᴅ #{query.from_user.id} \n\n•• ᖴᎥᒪᗴ Nᗩᗰᗴ : {file.file_name}",
+                                quote=True,
+                                disable_web_page_preview=True,
+                                reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Short Link", url= await get_shortlink(lazy_stream)),  # we download Link
+                                                                    InlineKeyboardButton('▶Stream online', url=lazy_stream)]])  # web stream Link
+                                )
+
                         print("lazy_stream:", lazy_stream)
                         inline_button = [ InlineKeyboardButton(
                             text=f"[{get_size(file.file_size)}] {file.file_name}", 
@@ -1391,23 +1406,29 @@ async def auto_filter(client, msg, spoll=False):
                     btn = []
                     for file in files:
                         try:
-                            lazy_files = await client.send_cached_media(
+                            log_msg = await client.send_cached_media(
                                 chat_id=REQ_CHANNEL,
                                 file_id=file.file_id,
                                 caption=file.file_name,
                             )
-                            lazy_stream = f"{URL}watch/{str(lazy_files.id)}/{quote_plus(get_name(lazy_files))}?hash={get_hash(lazy_files)}"
+                            
+                            lazy_stream = await f"{URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
                             # Debug print statements
+                            await log_msg.reply_text(
+                                    text=f"•• ʟɪɴᴋ ɢᴇɴᴇʀᴀᴛᴇᴅ ꜰᴏʀ ɪᴅ #{message.from_user.id} \n\n•• ᖴᎥᒪᗴ Nᗩᗰᗴ : {file.file_name}",
+                                    quote=True,
+                                    disable_web_page_preview=True,
+                                    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Short Link", url= await get_shortlink(lazy_stream)),  # we download Link
+                                                                        InlineKeyboardButton('▶Stream online', url=lazy_stream)]])  # web stream Link
+                                    )
+    
                             print("lazy_stream:", lazy_stream)
-
                             inline_button = [ InlineKeyboardButton(
                                 text=f"[{get_size(file.file_size)}] {file.file_name}", 
                                 url=await get_shortlink(lazy_stream)
                             ) ]
-
                             # Debug print statements
                             print("Short Link:", await get_shortlink(lazy_stream))
-
                             btn.append(inline_button)
                         except Exception as e:
                             print(e)
@@ -1479,13 +1500,22 @@ async def auto_filter(client, msg, spoll=False):
                 btn = []
                 for file in files:
                     try:
-                        lazy_files = await client.send_cached_media(
+                        log_msg = await client.send_cached_media(
                             chat_id=REQ_CHANNEL,
                             file_id=file.file_id,
                             caption=file.file_name,
                         )
-                        lazy_stream = f"{URL}watch/{str(lazy_files.id)}/{quote_plus(get_name(lazy_files))}?hash={get_hash(lazy_files)}"
+                        
+                        lazy_stream = await f"{URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
                         # Debug print statements
+                        await log_msg.reply_text(
+                                text=f"•• ʟɪɴᴋ ɢᴇɴᴇʀᴀᴛᴇᴅ ꜰᴏʀ ɪᴅ #{message.from_user.id} \n\n•• ᖴᎥᒪᗴ Nᗩᗰᗴ : {file.file_name}",
+                                quote=True,
+                                disable_web_page_preview=True,
+                                reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Short Link", url= await get_shortlink(lazy_stream)),  # we download Link
+                                                                    InlineKeyboardButton('▶Stream online', url=lazy_stream)]])  # web stream Link
+                                )
+
                         print("lazy_stream:", lazy_stream)
                         inline_button = [ InlineKeyboardButton(
                             text=f"[{get_size(file.file_size)}] {file.file_name}", 
