@@ -229,15 +229,24 @@ async def next_page(bot, query):
                 else:
                     btn = []
                     for file in files:
-                        lazy_stream = f"{URL}watch/{str(file.file_id)}/{quote_plus(file.file_name)}?hash={get_hash(file)}"
-                        # lazy_download = f"{URL}{str(file.file_id)}/{quote_plus(get_name(file))}?hash={get_hash(file)}"
-
-                        inline_button = InlineKeyboardButton(
-                            text=f"[{get_size(file.file_size)}] {file.file_name}", 
-                            url=await get_shortlink(lazy_stream)
-                        )
-
-                        btn.append(inline_button)
+                        try:
+                            lazy_stream = f"{URL}watch/{str(file.file_id)}/{quote_plus(file.file_name)}?hash={get_hash(file)}"
+                            
+                            # Debug print statements
+                            print("lazy_stream:", lazy_stream)
+                            
+                            inline_button = [ InlineKeyboardButton(
+                                text=f"[{get_size(file.file_size)}] {file.file_name}", 
+                                url=await get_shortlink(lazy_stream)
+                            ) ]
+    
+                            # Debug print statements
+                            print("Short Link:", await get_shortlink(lazy_stream))
+    
+                            btn.append(inline_button)
+                        except Exception as e:
+                            print(e)
+                            # @LazyDeveloper ! => unforgetable name;
             else:
                 if query.from_user.id in ADMINS:
                     btn = [
@@ -304,15 +313,24 @@ async def next_page(bot, query):
             else:
                 btn = []
                 for file in files:
-                    lazy_stream = f"{URL}watch/{str(file.file_id)}/{quote_plus(file.file_name)}?hash={get_hash(file)}"
-                    # lazy_download = f"{URL}{str(file.file_id)}/{quote_plus(get_name(file))}?hash={get_hash(file)}"
+                    try:
+                        lazy_stream = f"{URL}watch/{str(file.file_id)}/{quote_plus(file.file_name)}?hash={get_hash(file)}"
+                        
+                        # Debug print statements
+                        print("lazy_stream:", lazy_stream)
+                        
+                        inline_button = [ InlineKeyboardButton(
+                            text=f"[{get_size(file.file_size)}] {file.file_name}", 
+                            url=await get_shortlink(lazy_stream)
+                        ) ]
 
-                    inline_button = InlineKeyboardButton(
-                        text=f"[{get_size(file.file_size)}] {file.file_name}", 
-                        url=await get_shortlink(lazy_stream)
-                    )
+                        # Debug print statements
+                        print("Short Link:", await get_shortlink(lazy_stream))
 
-                    btn.append(inline_button)
+                        btn.append(inline_button)
+                    except Exception as e:
+                        print(e)
+                        # @LazyDeveloper ! => unforgetable name;
         else:
             if query.form_user.id in ADMINS:
                 btn = [
@@ -1367,15 +1385,24 @@ async def auto_filter(client, msg, spoll=False):
                 else:
                     btn = []
                     for file in files:
-                        lazy_stream = f"{URL}watch/{str(file.file_id)}/{quote_plus(file.file_name)}?hash={get_hash(file)}"
-                        # lazy_download = f"{URL}{str(file.file_id)}/{quote_plus(get_name(file))}?hash={get_hash(file)}"
+                        try:
+                            lazy_stream = f"{URL}watch/{str(file.file_id)}/{quote_plus(file.file_name)}?hash={get_hash(file)}"
 
-                        inline_button = InlineKeyboardButton(
-                            text=f"[{get_size(file.file_size)}] {file.file_name}", 
-                            url=await get_shortlink(lazy_stream)
-                        )
+                            # Debug print statements
+                            print("lazy_stream:", lazy_stream)
 
-                        btn.append(inline_button)
+                            inline_button = [ InlineKeyboardButton(
+                                text=f"[{get_size(file.file_size)}] {file.file_name}", 
+                                url=await get_shortlink(lazy_stream)
+                            ) ]
+
+                            # Debug print statements
+                            print("Short Link:", await get_shortlink(lazy_stream))
+
+                            btn.append(inline_button)
+                        except Exception as e:
+                            print(e)
+                            # @LazyDeveloper ! => unforgetable name;
             else:
                 if message.from_user.id in ADMINS:
                     btn = [
@@ -1442,15 +1469,24 @@ async def auto_filter(client, msg, spoll=False):
             else:
                 btn = []
                 for file in files:
-                    lazy_stream = f"{URL}watch/{str(file.file_id)}/{quote_plus(file.file_name)}?hash={get_hash(file)}"
-                    # lazy_download = f"{URL}{str(file.file_id)}/{quote_plus(get_name(file))}?hash={get_hash(file)}"
+                    try:
+                        lazy_stream = f"{URL}watch/{str(file.file_id)}/{quote_plus(file.file_name)}?hash={get_hash(file)}"
+                        
+                        # Debug print statements
+                        print("lazy_stream:", lazy_stream)
+                        
+                        inline_button = [ InlineKeyboardButton(
+                            text=f"[{get_size(file.file_size)}] {file.file_name}", 
+                            url=await get_shortlink(lazy_stream)
+                        ) ]
 
-                    inline_button = InlineKeyboardButton(
-                        text=f"[{get_size(file.file_size)}] {file.file_name}", 
-                        url=await get_shortlink(lazy_stream)
-                    )
+                        # Debug print statements
+                        print("Short Link:", await get_shortlink(lazy_stream))
 
-                    btn.append(inline_button)
+                        btn.append(inline_button)
+                    except Exception as e:
+                        print(e)
+                        # @LazyDeveloper ! => unforgetable name;
         else:
             if message.form_user.id in ADMINS:
                 btn = [
