@@ -190,7 +190,6 @@ async def next_page(bot, query):
         #     download_counts[query.from_user.id] = {'date': current_date, 'count': 1}d
     if settings['button']:
             if URL_MODE is True:
-                lxd = query.message.reply_text(f"Generating stream links....")
                 if query.from_user.id in ADMINS:
                     btn = [
                         [
@@ -258,8 +257,6 @@ async def next_page(bot, query):
                         except Exception as e:
                             print(e)
                             # @LazyDeveloper !( another last of the star ! );
-                    lxd.delete()
-
             else:
                 if query.from_user.id in ADMINS:
                     btn = [
@@ -291,8 +288,6 @@ async def next_page(bot, query):
 
     else:
         if URL_MODE is True:
-            lyd = query.message.reply_text(f"Generating stream links....")
-
             if query.from_user.id in ADMINS:
                 btn = [
                     [
@@ -353,11 +348,9 @@ async def next_page(bot, query):
                         # Debug print statements
                         print("Short Link:", await get_shortlink(lazy_stream))
                         btn.append(inline_button)
-                        lyd.delete()
                     except Exception as e:
                         print(e)
                         # @LazyDeveloper !( another last of the star ! );
-                lyd.delete()
         else:
             if query.form_user.id in ADMINS:
                 btn = [
@@ -1373,7 +1366,6 @@ async def auto_filter(client, msg, spoll=False):
     pre = 'filep' if settings['file_secure'] else 'file'
     if settings["button"]:
             if URL_MODE is True:
-                lzd = query.message.reply_text(f"Generating stream links....")
                 if message.from_user.id in ADMINS:
                     btn = [
                         [
@@ -1440,7 +1432,6 @@ async def auto_filter(client, msg, spoll=False):
                             btn.append(inline_button)
                         except Exception as e:
                             print(e)
-                    lzd.delete()
                             # @LazyDeveloper !( another last of the star ! );
             else:
                 if message.from_user.id in ADMINS:
@@ -1473,8 +1464,6 @@ async def auto_filter(client, msg, spoll=False):
 
     else:
         if URL_MODE is True:
-            led = query.message.reply_text(f"Generating stream links....")
-
             if message.from_user.id in ADMINS:
                 btn = [
                     [
@@ -1537,7 +1526,6 @@ async def auto_filter(client, msg, spoll=False):
                         btn.append(inline_button)
                     except Exception as e:
                         print(e)
-                led.delete()
                         # @LazyDeveloper !( another last of the star ! );
         else:
             if message.form_user.id in ADMINS:
