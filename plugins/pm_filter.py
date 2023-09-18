@@ -226,37 +226,16 @@ async def next_page(bot, query):
                     ]
                     for file in files
                     ]
-                else:
-                    btn = []
-                    for file in files:
-                        try:
-                            log_msg = await bot.send_cached_media(
-                                chat_id=LOG_CHANNEL,
-                                file_id=file.file_id,
-                                caption=file.file_name,
-                            )
-                            
-                            lazy_stream = f"{URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
-                            # Debug print statements
-                            await log_msg.reply_text(
-                                    text=f"•• ʟɪɴᴋ ɢᴇɴᴇʀᴀᴛᴇᴅ ꜰᴏʀ ɪᴅ #{query.from_user.id} \n\n•• ᖴᎥᒪᗴ Nᗩᗰᗴ : {file.file_name}",
-                                    quote=True,
-                                    disable_web_page_preview=True,
-                                    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Short Link", url= await get_shortlink(lazy_stream)),  # we download Link
-                                                                        InlineKeyboardButton('▶Stream online', url=lazy_stream)]])  # web stream Link
-                                    )
-    
-                            print("lazy_stream:", lazy_stream)
-                            inline_button = [ InlineKeyboardButton(
+                else:                    
+		     btn = [
+                        [
+                            InlineKeyboardButton(
                                 text=f"[{get_size(file.file_size)}] {file.file_name}", 
-                                url=await get_shortlink(lazy_stream)
-                            ) ]
-                            # Debug print statements
-                            print("Short Link:", await get_shortlink(lazy_stream))
-                            btn.append(inline_button)
-                        except Exception as e:
-                            print(e)
-                            # @LazyDeveloper !( another last of the star ! );
+                                url=await get_shortlink(f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}")
+                            ),
+                        ]
+                        for file in files
+                    ]
             else:
                 if query.from_user.id in ADMINS:
                     btn = [
@@ -321,36 +300,15 @@ async def next_page(bot, query):
                     for file in files
                 ]
             else:
-                btn = []
-                for file in files:
-                    try:
-                        log_msg = await bot.send_cached_media(
-                            chat_id=LOG_CHANNEL,
-                            file_id=file.file_id,
-                            caption=file.file_name,
-                        )
-                        
-                        lazy_stream = f"{URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
-                        # Debug print statements
-                        await log_msg.reply_text(
-                                text=f"•• ʟɪɴᴋ ɢᴇɴᴇʀᴀᴛᴇᴅ ꜰᴏʀ ɪᴅ #{query.from_user.id} \n\n•• ᖴᎥᒪᗴ Nᗩᗰᗴ : {file.file_name}",
-                                quote=True,
-                                disable_web_page_preview=True,
-                                reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Short Link", url= await get_shortlink(lazy_stream)),  # we download Link
-                                                                    InlineKeyboardButton('▶Stream online', url=lazy_stream)]])  # web stream Link
-                                )
-
-                        print("lazy_stream:", lazy_stream)
-                        inline_button = [ InlineKeyboardButton(
-                            text=f"[{get_size(file.file_size)}] {file.file_name}", 
-                            url=await get_shortlink(lazy_stream)
-                        ) ]
-                        # Debug print statements
-                        print("Short Link:", await get_shortlink(lazy_stream))
-                        btn.append(inline_button)
-                    except Exception as e:
-                        print(e)
-                        # @LazyDeveloper !( another last of the star ! );
+		 btn = [
+                        [
+                            InlineKeyboardButton(
+                                text=f"[{get_size(file.file_size)}] {file.file_name}", 
+                                url=await get_shortlink(f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}")
+                            ),
+                        ]
+                        for file in files
+                    ]
         else:
             if query.form_user.id in ADMINS:
                 btn = [
