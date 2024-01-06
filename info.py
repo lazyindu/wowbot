@@ -1,6 +1,13 @@
 import re
 from os import getenv, environ
+import logging
 
+logging.basicConfig(
+    format='%(name)s - %(levelname)s - %(message)s',
+    handlers=[logging.FileHandler('log.txt'),
+              logging.StreamHandler()],
+    level=logging.INFO
+)
 id_pattern = re.compile(r'^.\d+$')
 def is_enabled(value, default):
     if value.lower() in ["true", "yes", "1", "enable", "y"]:
@@ -63,9 +70,10 @@ LAZY_RENAMERS = (lazy_renamers + ADMINS) if lazy_renamers else []
 REQ_CHANNEL = int(environ.get('REQ_CHANNEL'))
 
 #ai
-OPENAI_API = environ.get("OPENAI_API","")
-AI = is_enabled((environ.get("AI","True")), False)
-LAZY_AI_LOGS = int(environ.get("LAZY_AI_LOGS","")) #GIVE YOUR NEW LOG CHANNEL ID TO STORE MESSAGES THAT THEY SEARCH IN BOT PM.... [ i have added this to keep an eye on the users message, to avoid misuse of LazyPrincess ]
+# OPENAI_API = environ.get("OPENAI_API","")
+# AI = is_enabled((environ.get("AI","True")), False)
+# LAZY_AI_LOGS = int(environ.get("LAZY_AI_LOGS","")) #GIVE YOUR NEW LOG CHANNEL ID TO STORE MESSAGES THAT THEY SEARCH IN BOT PM.... [ i have added this to keep an eye on the users message, to avoid misuse of LazyPrincess ]
+
 # Requested Content template variables ---
 ADMIN_USRNM = environ.get('ADMIN_USRNM','real_heros') # WITHOUT @
 MAIN_CHANNEL_USRNM = environ.get('MAIN_CHANNEL_USRNM','real_MoviesAdda3') # WITHOUT @
@@ -82,8 +90,6 @@ lazy_groups = environ.get('LAZY_GROUPS','')
 LAZY_GROUPS = [int(lazy_groups) for lazy_groups in lazy_groups.split()] if lazy_groups else None # ADD GROUP ID IN THIS VARIABLE
 my_users = [int(my_users) if id_pattern.search(my_users) else my_users for my_users in environ.get('MY_USERS', '').split()]
 MY_USERS = (my_users) if my_users else []
-
-
 
 # Online Stream and Download
 PORT = int(environ.get('PORT', 8080))
@@ -115,11 +121,29 @@ if HAS_SSL:
     URL = "https://{}/".format(FQDN)
 else:
     URL = "http://{}/".format(FQDN)
-UPDATES_CHANNEL = str(getenv('UPDATES_CHANNEL', None))
 BANNED_CHANNELS = list(set(int(x) for x in str(getenv("BANNED_CHANNELS", "-1001987654567")).split())) 
 OWNER_USERNAME = "LazyDeveloper"
 
 
+# URL UPLOADING
+BANNED_USERS = set(int(x) for x in environ.get("BANNED_USERS", "").split())
+DOWNLOAD_LOCATION = "./DOWNLOADS"
+MAX_FILE_SIZE = 4194304000
+TG_MAX_FILE_SIZE = 4194304000
+FREE_USER_MAX_FILE_SIZE = 4194304000
+CHUNK_SIZE = int(environ.get("CHUNK_SIZE", 128))
+DEF_THUMB_NAIL_VID_S = environ.get("DEF_THUMB_NAIL_VID_S", "https://telegra.ph/file/0021415ce9c8d492ccd15.jpg")
+HTTP_PROXY = environ.get("HTTP_PROXY", "")
+OUO_IO_API_KEY = ""
+MAX_MESSAGE_LENGTH = 4096
+PROCESS_MAX_TIMEOUT = 0
+DEF_WATER_MARK_FILE = ""
+LOGGER = logging
+OWNER_ID = int(environ.get("OWNER_ID", ""))
+UPDATES_CHANNEL = environ.get("UPDATES_CHANNEL", "")
+BOT_USERNAME = environ.get("BOT_USERNAME", "")
+lazydownloaders = [int(lazydownloaders) if id_pattern.search(lazydownloaders) else lazydownloaders for lazydownloaders in environ.get('PRIME_DOWNLOADERS', '').split()]
+PRIME_DOWNLOADERS = (lazydownloaders) if lazydownloaders else []
 
 # Auto Delete For Group Message (Self Delete) #
 SELF_DELETE_SECONDS = int(environ.get('SELF_DELETE_SECONDS', 300))
