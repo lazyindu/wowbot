@@ -29,7 +29,7 @@ logger = logging.getLogger(__name__)
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
 
-@Client.on_message(filters.private & filters.user(ADMINS) & filters.user(PRIME_DOWNLOADERS) & filters.regex(pattern=".*http.*"))
+@Client.on_message(filters.private & filters.user(ADMINS) & filters.regex(pattern=".*http.*"))
 async def echo(client, message):
     if LOG_CHANNEL:
         try:
