@@ -20,7 +20,7 @@ from pyrogram import filters
 from Script import script
 import time
 from urllib.parse import urlparse
-from info import LOG_CHANNEL, DOWNLOAD_LOCATION, HTTP_PROXY, UPDATES_CHANNEL, BANNED_USERS, DEF_THUMB_NAIL_VID_S, CHUNK_SIZE,ADMINS,PRIME_DOWNLOADERS
+from info import LOG_CHANNEL, DOWNLOAD_LOCATION, HTTP_PROXY, AUTH_CHANNEL, BANNED_USERS, CHUNK_SIZE,ADMINS,PRIME_DOWNLOADERS
 from PIL import Image
 import logging
 logging.basicConfig(level=logging.DEBUG,

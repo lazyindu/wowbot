@@ -14,18 +14,10 @@ services:
         sync: false
       - key: API_HASH
         sync: false
-      - key: OWNER_ID 
-        sync: false
-      - key: BOT_USERNAME
-        sync: false
       - key: WEBHOOK
-        sync: false
-      - key: DEF_THUMB_NAIL_VID_S
         sync: false
       - key: DATABASE_URI
         sync: false 
-      - key: UPDATES_CHANNEL
-        sync: false
       - key: LOG_CHANNEL
         sync: false    
       - key: SESSION

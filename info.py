@@ -132,16 +132,12 @@ MAX_FILE_SIZE = 4194304000
 TG_MAX_FILE_SIZE = 4194304000
 FREE_USER_MAX_FILE_SIZE = 4194304000
 CHUNK_SIZE = int(environ.get("CHUNK_SIZE", 128))
-DEF_THUMB_NAIL_VID_S = environ.get("DEF_THUMB_NAIL_VID_S", "https://telegra.ph/file/0021415ce9c8d492ccd15.jpg")
 HTTP_PROXY = environ.get("HTTP_PROXY", "")
 OUO_IO_API_KEY = ""
 MAX_MESSAGE_LENGTH = 4096
 PROCESS_MAX_TIMEOUT = 0
 DEF_WATER_MARK_FILE = ""
 LOGGER = logging
-OWNER_ID = int(environ.get("OWNER_ID", ""))
-UPDATES_CHANNEL = environ.get("UPDATES_CHANNEL", "")
-BOT_USERNAME = environ.get("BOT_USERNAME", "")
 lazydownloaders = [int(lazydownloaders) if id_pattern.search(lazydownloaders) else lazydownloaders for lazydownloaders in environ.get('PRIME_DOWNLOADERS', '').split()]
 PRIME_DOWNLOADERS = (lazydownloaders) if lazydownloaders else []
 

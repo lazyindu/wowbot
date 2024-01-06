@@ -24,7 +24,7 @@ from hachoir.parser import createParser
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 from pyrogram import filters
 from database.lazy_ffmpeg import take_screen_shot
-from info import DOWNLOAD_LOCATION, UPDATES_CHANNEL
+from info import DOWNLOAD_LOCATION, AUTH_CHANNEL
 from database.users_chats_db import db
 from plugins.settings.settings import *
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, CallbackQuery, ForceReply
@@ -36,7 +36,7 @@ async def viewthumb(client, message):
     if not message.from_user:
         return await message.reply_text("What the hell is this...")
     await add_user_to_database(client, message)
-    if UPDATES_CHANNEL:
+    if AUTH_CHANNEL:
       fsub = await handle_force_subscribe(client, message)
       if fsub == 400:
         return
@@ -57,7 +57,7 @@ async def removethumb(client, message):
     if not message.from_user:
         return await message.reply_text("What the hell is this...")
     await add_user_to_database(client, message)
-    if UPDATES_CHANNEL:
+    if AUTH_CHANNEL:
       fsub = await handle_force_subscribe(client, message)
       if fsub == 400:
         return
@@ -73,7 +73,7 @@ async def addthumbs(client, message):
     
     await add_user_to_database(client, message)
     
-    if UPDATES_CHANNEL:
+    if AUTH_CHANNEL:
         fsub = await handle_force_subscribe(client, message)
         if fsub == 400:
             return
@@ -92,7 +92,7 @@ async def viewthumbnail(client, message):
     if not message.from_user:
         return await message.reply_text("What the hell is this...")
     await add_user_to_database(client, message) 
-    if UPDATES_CHANNEL:
+    if AUTH_CHANNEL:
       fsub = await handle_force_subscribe(client, message)
       if fsub == 400:
         return   
@@ -114,7 +114,7 @@ async def removethumbnail(client, message):
     if not message.from_user:
         return await message.reply_text("What the hell is this...")
     await add_user_to_database(client, message)
-    if UPDATES_CHANNEL:
+    if AUTH_CHANNEL:
       fsub = await handle_force_subscribe(client, message)
       if fsub == 400:
         return
@@ -136,7 +136,7 @@ async def add_thumbnail(client, message):
     
     await add_user_to_database(client, message)
     
-    if UPDATES_CHANNEL:
+    if AUTH_CHANNEL:
         fsub = await handle_force_subscribe(client, message)
         if fsub == 400:
             return
