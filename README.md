@@ -6,7 +6,7 @@
 </h1>
 
 ## ⚡️Features
-- - - 🔥 UPCOMING : `BOT CLONING[V9.0]` & `LANGUAGE and SEASON FILTER[V9.5]`
+- 🔥 UPCOMING : `BOT CLONING[V-_._]` & `LANGUAGE and SEASON FILTER[V-_._]`
 - [x] 🔥 New feature :
     - [+] ⚡️ Added `URL UPLOADING` feature and many more  ⚡️
     - [+] ⚡️ Added `file renaming` feature ⚡️
