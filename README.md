@@ -147,6 +147,25 @@ python3 bot.py
 
 [Join Main Channel](https://telegram.dog/LazyDeveloper): LazyDeveloper 🎁
 
+
+### 🔗 important_Links
+- [🤩 Create Auto Filter BOT](https://www.youtube.com/playlist?list=PLZHPDcp3Vkih9GDM7BUJ1UF988n23Ua__)
+- [۞ Repo Editing Tutorials](https://www.youtube.com/playlist?list=PLZHPDcp3Vkiid03NJtFpi8gIov-QJMolK)
+- [🤩 Error Handling Videos](https://www.youtube.com/playlist?list=PLZHPDcp3VkigMWoTjujScuhFLCl1jl-ah)
+- [۞ Create FILE TO LINK BOT](https://www.youtube.com/watch?v=h3Uvr15ZPnc)
+- [🤩 Create Movie Request BOT](https://www.youtube.com/watch?v=mIEv7MjLj2U&t=38s)
+- [❣️ Join Youtube](https://www.youtube.com/@LazyDeveloperr)
+
+
+#### 🧡 Respecting... 🧡
+- [🔥 LazyDeveloperr](https://github.com/LazyDeveloperr) 
+
+### 🤩 INSPIRATION
+<a href="https://telegram.dog/LazyPrincessX_BOT">
+   <p>❣️ LazyPrincess 🔥</p>
+</a>
+
+
 ## Disclaimer
 [![GNU Affero General Public License 2.0](https://www.gnu.org/graphics/agplv3-155x51.png)](https://www.gnu.org/licenses/agpl-3.0.en.html#header)    
 Licensed under [GNU AGPL 2.0.](https://github.com/LazyDeveloperr/LazyPrincess/blob/master/LICENSE)
